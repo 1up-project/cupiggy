@@ -15,8 +15,8 @@ import com.oneupproject.cupiggy.util.Utility
 
 abstract class BasicBarrierActor : BasicActor {
 
-  protected val START_POINT_X = Utility.getGameWidth()
-  protected val BOTTOM_POINT = Utility.getGameHeight()
+  protected val startPointX = Utility.getGameWidth()
+  protected val bottomPoint = Utility.getGameHeight()
 
   init {
     paint.color = Color.rgb(0, 240, 233)

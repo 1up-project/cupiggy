@@ -34,11 +34,11 @@ object OperationManager : BasicManager() {
     private set
 
   private var paint: Paint = Paint()
-  private val FONT_SIZE: Float = 32.0f
+  private val fontSize: Float = 32.0f
 
   init {
     paint.color = Color.YELLOW
-    paint.textSize = FONT_SIZE
+    paint.textSize = fontSize
   }
 
   fun clearInputState() {
@@ -69,12 +69,12 @@ object OperationManager : BasicManager() {
 
   override fun onDraw(canvas: Canvas) {
     if (BuildConfig.IS_DEBUG) {
-      val DRAW_X = Utility.getGameWidth() - 120f
-      val DRAW_Y = Utility.getGameHeight()
+      val drawX = Utility.getGameWidth() - 120f
+      val drawY = Utility.getGameHeight()
 
-      canvas.drawText(String.format("x: %.1f", x), DRAW_X, DRAW_Y - FONT_SIZE * 3 - 2f, paint)
-      canvas.drawText(String.format("y: %.1f", y), DRAW_X, DRAW_Y - FONT_SIZE * 2 - 2f, paint)
-      canvas.drawText(String.format("z: %.1f", z), DRAW_X, DRAW_Y - FONT_SIZE * 1 - 2f, paint)
+      canvas.drawText(String.format("x: %.1f", x), drawX, drawY - fontSize * 3 - 2f, paint)
+      canvas.drawText(String.format("y: %.1f", y), drawX, drawY - fontSize * 2 - 2f, paint)
+      canvas.drawText(String.format("z: %.1f", z), drawX, drawY - fontSize * 1 - 2f, paint)
     }
   }
 }

@@ -25,8 +25,8 @@ import com.oneupproject.cupiggy.util.helper.ImageHelper
 
 class Font {
 
-  private val FONT_SET_IMAGE = ImageHelper.getFontsImage()
-  private val FONT_SIZE = 32
+  private val fontSetImage = ImageHelper.getFontsImage()
+  private val fontSize = 32
 
   constructor()
 
@@ -34,7 +34,7 @@ class Font {
    * 文字を描画します。
    */
   fun drawText(text: String, x: Float, y: Float, canvas: Canvas) {
-    val TEXT_BYTE = text.toByteArray()
+    val textByte = text.toByteArray()
 
     var drawX = x.toInt()
     var drawY = y.toInt()
@@ -46,8 +46,8 @@ class Font {
     var drawRange = RectF()
     var fontRange = Rect()
 
-    for (i in 0 until TEXT_BYTE.size) {
-      keyCode = TEXT_BYTE[i].toInt() - 32
+    for (i in 0 until textByte.size) {
+      keyCode = textByte[i].toInt() - 32
 
       when {
         keyCode < 0 -> {
@@ -67,20 +67,20 @@ class Font {
       }
 
       // 画像の切り出し範囲
-      fontRange.left = (fontX * FONT_SIZE) - FONT_SIZE
-      fontRange.top = fontY * FONT_SIZE
-      fontRange.right = fontRange.left + FONT_SIZE
-      fontRange.bottom = fontRange.top + FONT_SIZE
+      fontRange.left = (fontX * fontSize) - fontSize
+      fontRange.top = fontY * fontSize
+      fontRange.right = fontRange.left + fontSize
+      fontRange.bottom = fontRange.top + fontSize
 
       // 画像の表示位置
       drawRange.left = drawX.toFloat()
       drawRange.top = drawY.toFloat()
-      drawRange.right = drawRange.left + FONT_SIZE
-      drawRange.bottom = drawRange.top + FONT_SIZE
+      drawRange.right = drawRange.left + fontSize
+      drawRange.bottom = drawRange.top + fontSize
 
-      canvas.drawBitmap(FONT_SET_IMAGE, fontRange, drawRange, null)
+      canvas.drawBitmap(fontSetImage, fontRange, drawRange, null)
 
-      drawX += FONT_SIZE
+      drawX += fontSize
     }
   }
 
@@ -88,10 +88,10 @@ class Font {
    * 中央揃えで描画します。
    */
   fun drawCenteringText(text: String, y: Float, canvas: Canvas) {
-    val DISP_CENTER = Utility.getGameWidth() / 2
-    val STRING_WIDTH = text.length * FONT_SIZE
-    val X = DISP_CENTER - (STRING_WIDTH / 2)
+    val dispCenter = Utility.getGameWidth() / 2
+    val stringWidth = text.length * fontSize
+    val x = dispCenter - (stringWidth / 2)
 
-    drawText(text, X, y, canvas)
+    drawText(text, x, y, canvas)
   }
 }

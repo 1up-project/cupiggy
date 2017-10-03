@@ -87,13 +87,13 @@ abstract class BasicActor : GameObject {
    * @return 取得したスピードを返す。（右か登場するため、常にマイナス値）
    */
   protected open fun getSpeed(): Float {
-    val SPEED = Utility.getRandomFloatValue(maxSpeed.toInt())
+    val speed = Utility.getRandomFloatValue(maxSpeed.toInt())
 
-    if (SPEED < minSpeed) {
+    if (speed < minSpeed) {
       return -minSpeed
     }
 
-    return -SPEED
+    return -speed
   }
 
   /**
@@ -118,18 +118,18 @@ abstract class BasicActor : GameObject {
       collisionRange = RectF()
     }
 
-    val CENTER_POINT_X = (x + width) - (width / 2)
-    val CENTER_POINT_Y = (y + height) - (height / 2)
+    val centerPointX = (x + width) - (width / 2)
+    val centerPointY = (y + height) - (height / 2)
 
-    val LEFT = CENTER_POINT_X - (collisionRangeWidth / 2)
-    val TOP = CENTER_POINT_Y - (collisionRangeHeight / 2)
-    val RIGHT = LEFT + collisionRangeWidth
-    val BOTTOM = TOP + collisionRangeHeight
+    val left = centerPointX - (collisionRangeWidth / 2)
+    val top = centerPointY - (collisionRangeHeight / 2)
+    val right = left + collisionRangeWidth
+    val bottom = top + collisionRangeHeight
 
-    collisionRange?.left = LEFT
-    collisionRange?.top = TOP
-    collisionRange?.right = RIGHT
-    collisionRange?.bottom = BOTTOM
+    collisionRange?.left = left
+    collisionRange?.top = top
+    collisionRange?.right = right
+    collisionRange?.bottom = bottom
   }
 
   /**
@@ -181,15 +181,15 @@ abstract class BasicActor : GameObject {
    * @return 画面外＋200でTrueを返します。
    */
   private fun beOut(): Boolean {
-    val WIDTH_EXTRA = 200
-    val HEIGHT_EXTRA = 200
+    val widhtExtra = 200
+    val heightExtra = 200
 
-    val LEFT_EXTRA = -1 * WIDTH_EXTRA
-    val TOP_EXTRA = -1 * HEIGHT_EXTRA
-    val RIGHT_EXTRA = Utility.getGameWidth() + WIDTH_EXTRA
-    val BOTTOM_EXTRA = Utility.getGameHeight() + HEIGHT_EXTRA
+    val leftExtra = -1 * widhtExtra
+    val topExtra = -1 * heightExtra
+    val rightExtra = Utility.getGameWidth() + widhtExtra
+    val bottomExtra = Utility.getGameHeight() + heightExtra
 
-    return (x < LEFT_EXTRA) || (y < TOP_EXTRA) || (x > RIGHT_EXTRA) || (y > BOTTOM_EXTRA)
+    return (x < leftExtra) || (y < topExtra) || (x > rightExtra) || (y > bottomExtra)
   }
 
   /**

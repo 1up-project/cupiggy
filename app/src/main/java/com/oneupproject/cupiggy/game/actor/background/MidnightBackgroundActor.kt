@@ -35,30 +35,30 @@ class MidnightBackgroundActor : BasicBackgroundActor {
     }
   }
 
-  private val MAX_STAR_NUM = 80
+  private val maxStarNum = 80
 
-  private var stars: Array<Star?> = arrayOfNulls<Star?>(MAX_STAR_NUM)
+  private var stars: Array<Star?> = arrayOfNulls<Star?>(maxStarNum)
 
-  private val MOON_IMAGE = ImageHelper.getMoon()
+  private val moonImage = ImageHelper.getMoon()
 
   constructor() : super()
 
   init {
-    for (i in 0 until MAX_STAR_NUM) {
+    for (i in 0 until maxStarNum) {
       stars[i] = getNewStar()
     }
   }
 
   private fun getNewStar(): Star {
-    val X = Utility.getRandomFloatValue(Utility.getGameWidth().toInt())
-    val Y = Utility.getRandomFloatValue(Utility.getGameHeight().toInt())
-    val VECTOR = Vector(-5f, 0f)
+    val x = Utility.getRandomFloatValue(Utility.getGameWidth().toInt())
+    val y = Utility.getRandomFloatValue(Utility.getGameHeight().toInt())
+    val vec = Vector(-5f, 0f)
 
-    return Star(X, Y, VECTOR)
+    return Star(x, y, vec)
   }
 
   override fun onUpdate(): Boolean {
-    for (i in 0 until MAX_STAR_NUM) {
+    for (i in 0 until maxStarNum) {
       stars[i]!!.onUpdate()
       if (!stars[i]!!.isAlive) {
         stars[i] = getNewStar()
@@ -71,7 +71,7 @@ class MidnightBackgroundActor : BasicBackgroundActor {
   override fun onDraw(canvas: Canvas) {
     canvas.drawColor(Color.rgb(0, 1, 34))
     stars.forEach { it!!.onDraw(canvas) }
-    canvas.drawBitmap(MOON_IMAGE, 300f, 280f, paint)
+    canvas.drawBitmap(moonImage, 300f, 280f, paint)
   }
 
 }

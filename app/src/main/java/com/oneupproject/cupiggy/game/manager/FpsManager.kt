@@ -27,11 +27,11 @@ object FpsManager : BasicManager() {
   private val FPS = 60
 
   private var paint = Paint()
-  private val FONT_SIZE = 32.0f
+  private val fontSize = 32.0f
 
   init {
     paint.color = Color.GREEN
-    paint.textSize = FONT_SIZE
+    paint.textSize = fontSize
   }
 
   override fun onUpdate() : Boolean {
@@ -50,10 +50,10 @@ object FpsManager : BasicManager() {
 
   override fun onDraw(canvas : Canvas) {
     if (BuildConfig.IS_DEBUG) {
-      val DRAW_X = 0f
-      val DRAW_Y = Utility.getGameHeight() - FONT_SIZE
+      val drawX = 0f
+      val drawY = Utility.getGameHeight() - fontSize
 
-      canvas.drawText(String.format("%.1f fps", fps), DRAW_X, DRAW_Y, paint)
+      canvas.drawText(String.format("%.1f fps", fps), drawX, drawY, paint)
     }
   }
 

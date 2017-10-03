@@ -27,31 +27,31 @@ class ActorCreator : BasicCreator() {
   private fun createStar(x: Float, y: Float) = StarItemActor(x, y)
 
   fun createRandomItem(): BasicItemActor {
-    val X = Utility.getGameWidth()
-    val Y = Utility.getRandomFloatValue(Utility.getGameHeight().toInt())
-    val ITEM_NUM = Utility.getRandomIntValue(100)
+    val x = Utility.getGameWidth()
+    val y = Utility.getRandomFloatValue(Utility.getGameHeight().toInt())
+    val itemNum = Utility.getRandomIntValue(100)
 
     return when {
-      ITEM_NUM < 30 -> {
-        createStrawberry(X, Y)
+      itemNum < 30 -> {
+        createStrawberry(x, y)
       }
-      ITEM_NUM < 55 -> {
-        createPudding(X, Y)
+      itemNum < 55 -> {
+        createPudding(x, y)
       }
-      ITEM_NUM < 70 -> {
-        createDango(X, Y)
+      itemNum < 70 -> {
+        createDango(x, y)
       }
-      ITEM_NUM < 82 -> {
-        createIcePop(X, Y)
+      itemNum < 82 -> {
+        createIcePop(x, y)
       }
-      ITEM_NUM < 90 -> {
-        createChocolate(X, Y)
+      itemNum < 90 -> {
+        createChocolate(x, y)
       }
-      ITEM_NUM < 97 -> {
-        createCheese(X, Y)
+      itemNum < 97 -> {
+        createCheese(x, y)
       }
       else -> {
-        createStar(X, Y)
+        createStar(x, y)
       }
     }
   }

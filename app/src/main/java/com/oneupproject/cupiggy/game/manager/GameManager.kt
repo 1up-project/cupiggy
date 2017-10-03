@@ -23,8 +23,8 @@ import com.oneupproject.cupiggy.game.SceneManager
 
 object GameManager : BasicManager() {
 
-  val WIDTH: Float = 1280.0f
-  val HEIGHT: Float = 720.0f
+  const val WIDTH: Float = 1280.0f
+  const val HEIGHT: Float = 720.0f
 
   var displayWidth: Float = 0.0f
   var displayHeight: Float = 0.0f

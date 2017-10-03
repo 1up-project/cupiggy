@@ -13,7 +13,7 @@ package com.oneupproject.cupiggy.game.actor.barrier
 class RoofBarrierActor : FloorBarrierActor {
 
   override fun getReferencePointY(): Float {
-    return 0f - REFERENCE_Y
+    return 0f - referenceY
   }
 
   constructor() : super()

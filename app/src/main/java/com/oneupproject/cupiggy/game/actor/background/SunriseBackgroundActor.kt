@@ -18,7 +18,7 @@ import com.oneupproject.cupiggy.util.shape.RectDrawingShape
 
 class SunriseBackgroundActor : BasicBackgroundActor {
 
-  private val SUNRISE_IMAGE = ImageHelper.getSunrise()
+  private val sunriseImage = ImageHelper.getSunrise()
 
   private var underPaint = Paint()
   private var underRect = RectDrawingShape()
@@ -34,7 +34,7 @@ class SunriseBackgroundActor : BasicBackgroundActor {
   override fun onDraw(canvas: Canvas) {
     canvas.drawColor(Color.rgb(181, 181, 182))
     underRect.draw(canvas)
-    canvas.drawBitmap(SUNRISE_IMAGE, 300f, 300f, paint)
+    canvas.drawBitmap(sunriseImage, 300f, 300f, paint)
   }
 
 }

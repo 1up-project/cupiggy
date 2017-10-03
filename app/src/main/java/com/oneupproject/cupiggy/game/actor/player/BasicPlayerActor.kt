@@ -57,13 +57,13 @@ abstract class BasicPlayerActor : BasicActor {
   }
 
   override fun detain() {
-    val RIGHT = Utility.getGameWidth() - width
-    val BOTTOM = Utility.getGameHeight() - height
+    val right = Utility.getGameWidth() - width
+    val bottom = Utility.getGameHeight() - height
 
     if (x < 0) x = 0.0f
-    if (RIGHT < x) x = RIGHT
+    if (right < x) x = right
     if (y < 0) y = 0.0f
-    if (BOTTOM < y) y = BOTTOM
+    if (bottom < y) y = bottom
   }
 
 }

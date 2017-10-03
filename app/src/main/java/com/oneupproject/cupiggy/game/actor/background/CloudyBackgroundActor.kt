@@ -38,32 +38,33 @@ class CloudyBackgroundActor : BasicBackgroundActor {
 
   }
 
-  private val CLOUD_IMAGE = ImageHelper.getCloud()
+  private val cloudImage = ImageHelper.getCloud()
 
-  private val MIN_SPEED = 30f
-  private val SPEED_OF_WIDTH = 50f
-  private val MAX_RAIN_NUM = 80
+  private val speedOfWidth = 50f
+  private val maxRainNum = 80
 
-  private var rains: Array<Rain?> = arrayOfNulls<Rain?>(MAX_RAIN_NUM)
+  private var rains: Array<Rain?> = arrayOfNulls<Rain?>(maxRainNum)
 
   constructor() : super()
 
   init {
-    for (i in 0 until MAX_RAIN_NUM) {
+    for (i in 0 until maxRainNum) {
       rains[i] = getNewRain()
     }
   }
 
   private fun getNewRain(): Rain {
-    val X = Utility.getRandomFloatValue(Utility.getGameWidth().toInt())
-    val Y = -10f
-    val VECTOR = Vector(1f, Utility.getRandomFloatValue(SPEED_OF_WIDTH.toInt()) + MIN_SPEED)
+    val x = Utility.getRandomFloatValue(Utility.getGameWidth().toInt())
+    val y = -10f
 
-    return Rain(X, Y, VECTOR)
+    val minSpeed = 30f
+    val vec = Vector(1f, Utility.getRandomFloatValue(speedOfWidth.toInt()) + minSpeed)
+
+    return Rain(x, y, vec)
   }
 
   override fun onUpdate(): Boolean {
-    for (i in 0 until MAX_RAIN_NUM) {
+    for (i in 0 until maxRainNum) {
       rains[i]!!.onUpdate()
       if (!rains[i]!!.isAlive) {
         rains[i] = getNewRain()
@@ -76,7 +77,7 @@ class CloudyBackgroundActor : BasicBackgroundActor {
   override fun onDraw(canvas: Canvas) {
     canvas.drawColor(Color.rgb(62, 58, 57))
     rains.forEach { it!!.onDraw(canvas) }
-    canvas.drawBitmap(CLOUD_IMAGE, 250f, 200f, paint)
+    canvas.drawBitmap(cloudImage, 250f, 200f, paint)
   }
 
 }

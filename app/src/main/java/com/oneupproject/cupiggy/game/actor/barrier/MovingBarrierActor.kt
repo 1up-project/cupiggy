@@ -16,10 +16,10 @@ import com.oneupproject.cupiggy.util.shape.BarrierDrawingShape
 
 class MovingBarrierActor : BasicBarrierActor {
 
-  private val CYCLE = Utility.getRandomFloatValue(180) + 120f
-  private val STROKE = Utility.getRandomFloatValue(200) + 100f
+  private val cycle = Utility.getRandomFloatValue(180) + 120f
+  private val stroke = Utility.getRandomFloatValue(200) + 100f
 
-  private val SIZE = 60f
+  private val size = 60f
 
   private var shape = BarrierDrawingShape()
 
@@ -27,10 +27,10 @@ class MovingBarrierActor : BasicBarrierActor {
     minSpeed = 7f
     maxSpeed = 10f
 
-    width = SIZE
-    height = SIZE
+    width = size
+    height = size
 
-    x = START_POINT_X
+    x = startPointX
     y = Utility.getRandomY()
 
     vector.x = getSpeed()
@@ -42,8 +42,7 @@ class MovingBarrierActor : BasicBarrierActor {
 
   override fun move() {
     x += vector.x
-//    y = (CYCLE + Math.sin(Math.PI * 2f / CYCLE * FpsManager.count) * STROKE).toFloat()
-    y = Utility.getUpAndDownPoint(FpsManager.count, CYCLE, STROKE)
+    y = Utility.getUpAndDownPoint(FpsManager.count, cycle, stroke)
   }
 
   override fun onUpdate(): Boolean {

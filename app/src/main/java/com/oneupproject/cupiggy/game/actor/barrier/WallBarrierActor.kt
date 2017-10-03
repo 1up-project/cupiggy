@@ -14,9 +14,9 @@ import com.oneupproject.cupiggy.util.shape.BarrierDrawingShape
  */
 
 open class WallBarrierActor : BasicBarrierActor {
-  private val IS_TOP = Utility.getRandomIntValue(2) != 1
+  private val isTop = Utility.getRandomIntValue(2) != 1
 
-  private val REFERENCE_Y = 190f
+  private val referenceY = 190f
 
   private var minWidth = 80f
   private var maxWidth = 130f
@@ -38,19 +38,19 @@ open class WallBarrierActor : BasicBarrierActor {
   constructor() : super()
 
   open protected fun createWall() {
-    val WIDTH = Utility.getRandomFloatValue(maxWidth.toInt() - minWidth.toInt())
-    val HEIGHT = Utility.getRandomFloatValue(maxHeight.toInt() - minHeight.toInt())
+    val width = Utility.getRandomFloatValue(maxWidth.toInt() - minWidth.toInt())
+    val height = Utility.getRandomFloatValue(maxHeight.toInt() - minHeight.toInt())
 
-    width = minWidth + WIDTH
-    height = minHeight + HEIGHT
+    this.width = minWidth + width
+    this.height = minHeight + height
 
-    x = START_POINT_X
-    y = BOTTOM_POINT - height + REFERENCE_Y
-    if (IS_TOP) {
-      y = 0f - REFERENCE_Y
+    x = startPointX
+    y = bottomPoint - this.height + referenceY
+    if (isTop) {
+      y = 0f - referenceY
     }
 
-    createCollisionRange(width, height)
+    createCollisionRange(this.width, this.height)
   }
 
   override fun onUpdate(): Boolean {

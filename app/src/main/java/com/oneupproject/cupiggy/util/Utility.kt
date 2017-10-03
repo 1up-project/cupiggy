@@ -26,19 +26,19 @@ object Utility {
    * @return GameManager.Difficulty
    */
   fun getNowDifficulty(): GameManager.Difficulty {
-    val SCORE = ScoreManager.score
+    val score = ScoreManager.score
 
     return when {
-      (SCORE < GameManager.Difficulty.EASY.gradePoint) -> {
+      (score < GameManager.Difficulty.EASY.gradePoint) -> {
         GameManager.Difficulty.VERY_EASY
       }
-      (SCORE < GameManager.Difficulty.NORMAL.gradePoint) -> {
+      (score < GameManager.Difficulty.NORMAL.gradePoint) -> {
         GameManager.Difficulty.EASY
       }
-      (SCORE < GameManager.Difficulty.HARD.gradePoint) -> {
+      (score < GameManager.Difficulty.HARD.gradePoint) -> {
         GameManager.Difficulty.NORMAL
       }
-      (SCORE < GameManager.Difficulty.VERY_HARD.gradePoint) -> {
+      (score < GameManager.Difficulty.VERY_HARD.gradePoint) -> {
         GameManager.Difficulty.HARD
       }
       else -> {

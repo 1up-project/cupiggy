@@ -22,10 +22,10 @@ object ScoreManager : BasicManager() {
 
   private var isStoppingScoreUp = true
 
-  private val MAX_SCORE = 999999999
+  private const val MAX_SCORE = 999999999
 
   private var count = 0
-  private val SCORE_UP_COUNT = 100
+  private const val SCORE_UP_COUNT = 100
 
   var highscore = PreferenceHelper.readHighscore()
     private set
@@ -84,8 +84,8 @@ object ScoreManager : BasicManager() {
   override fun onDraw(canvas: Canvas) {
     font.drawText(String.format("SCORE %1$09d", score), 4f, 4f, canvas)
 
-    val HIGHSCORE_X = 672f
-    font.drawText(String.format("HIGHSCORE %1$09d", highscore), HIGHSCORE_X, 4f, canvas)
+    val highscoreX = 672f
+    font.drawText(String.format("HIGHSCORE %1$09d", highscore), highscoreX, 4f, canvas)
   }
 
 }

@@ -19,9 +19,9 @@ open class FloorBarrierActor : BasicBarrierActor {
   /**
    * 角丸の矩形を使用するため、y座標を画面外に設定する基準の長さ
    */
-  protected val REFERENCE_Y = 100f
+  protected val referenceY = 100f
 
-  private val WIDTH = 51f
+  private val baseWidth = 51f
   private var minHeight = 10f
   private var maxHeight = 100f
 
@@ -36,14 +36,14 @@ open class FloorBarrierActor : BasicBarrierActor {
   constructor() : super()
 
 
-  protected open fun getReferencePointY(): Float = BOTTOM_POINT - height + REFERENCE_Y
+  protected open fun getReferencePointY(): Float = bottomPoint - height + referenceY
 
   private fun createBarrier() {
-    width = WIDTH
+    width = baseWidth
 
-    val NOW_DIFFICULTY = Utility.getNowDifficulty()
+    val nowDifficulty = Utility.getNowDifficulty()
 
-    when (NOW_DIFFICULTY) {
+    when (nowDifficulty) {
       (GameManager.Difficulty.VERY_EASY) -> {
         minHeight = 0f
         maxHeight = 0f
@@ -67,13 +67,13 @@ open class FloorBarrierActor : BasicBarrierActor {
     }
 
     // 画面外にずらした分だけ追加
-    minHeight += REFERENCE_Y
-    maxHeight += REFERENCE_Y
+    minHeight += referenceY
+    maxHeight += referenceY
 
-    val HEIGHT = Utility.getRandomFloatValue(maxHeight.toInt() - minHeight.toInt())
-    height = minHeight + HEIGHT
+    val heightExtra = Utility.getRandomFloatValue(maxHeight.toInt() - minHeight.toInt())
+    height = minHeight + heightExtra
 
-    x = START_POINT_X
+    x = startPointX
     y = getReferencePointY()
 
     createCollisionRange(width, height)

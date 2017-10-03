@@ -54,8 +54,8 @@ class MainActivity : Activity() {
 
     // 全画面表示
     if (Build.VERSION.SDK_INT >= 19) {
-      val DECOR_VIEW = window.decorView
-      DECOR_VIEW.systemUiVisibility = View.SYSTEM_UI_FLAG_FULLSCREEN or
+      val decorView = window.decorView
+      decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_FULLSCREEN or
           View.SYSTEM_UI_FLAG_HIDE_NAVIGATION or
           View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY or
           View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN or

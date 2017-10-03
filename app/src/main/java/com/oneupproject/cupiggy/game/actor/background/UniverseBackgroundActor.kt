@@ -37,32 +37,33 @@ class UniverseBackgroundActor : BasicBackgroundActor {
     }
   }
 
-  private val MIN_SPEED = 5f
-  private val SPEED_OF_WIDTH = 10f
-  private val MAX_STAR_NUM = 80
+  private val speedOfWidth = 10f
+  private val maxStarNum = 80
 
-  private var shootingStars: Array<ShootingStar?> = arrayOfNulls<ShootingStar?>(MAX_STAR_NUM)
+  private var shootingStars: Array<ShootingStar?> = arrayOfNulls<ShootingStar?>(maxStarNum)
 
-  private val FIVE_POINT_STAR_IMAGE = ImageHelper.getFivePointStar()
+  private val fivePointStarImage = ImageHelper.getFivePointStar()
 
   constructor() : super()
 
   init {
-    for (i in 0 until MAX_STAR_NUM) {
+    for (i in 0 until maxStarNum) {
       shootingStars[i] = getNewStar()
     }
   }
 
   private fun getNewStar(): ShootingStar {
-    val X = Utility.getRandomFloatValue(Utility.getGameWidth().toInt())
-    val Y = Utility.getRandomFloatValue(Utility.getGameHeight().toInt())
-    val VECTOR = Vector(-Utility.getRandomFloatValue(SPEED_OF_WIDTH.toInt()) - MIN_SPEED, 0f)
+    val x = Utility.getRandomFloatValue(Utility.getGameWidth().toInt())
+    val y = Utility.getRandomFloatValue(Utility.getGameHeight().toInt())
 
-    return ShootingStar(X, Y, VECTOR)
+    val minSpeed = 5f
+    val vec = Vector(-Utility.getRandomFloatValue(speedOfWidth.toInt()) - minSpeed, 0f)
+
+    return ShootingStar(x, y, vec)
   }
 
   override fun onUpdate(): Boolean {
-    for (i in 0 until MAX_STAR_NUM) {
+    for (i in 0 until maxStarNum) {
       shootingStars[i]!!.onUpdate()
       if (!shootingStars[i]!!.isAlive) {
         shootingStars[i] = getNewStar()
@@ -75,7 +76,7 @@ class UniverseBackgroundActor : BasicBackgroundActor {
   override fun onDraw(canvas: Canvas) {
     canvas.drawColor(Color.BLACK)
     shootingStars.forEach { it!!.onDraw(canvas) }
-    canvas.drawBitmap(FIVE_POINT_STAR_IMAGE, 300f, 280f, paint)
+    canvas.drawBitmap(fivePointStarImage, 300f, 280f, paint)
   }
 
 }

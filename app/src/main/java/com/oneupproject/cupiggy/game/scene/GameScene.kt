@@ -35,7 +35,7 @@ class GameScene : BasicScene {
   private var barrierActors: LinkedList<BasicBarrierActor> = LinkedList()
 
   private var count = 0
-  private var MAX_COUNT = 10000
+  private var maxCount = 10000
 
   private var nowDifficulty = GameManager.Difficulty.NONE
 
@@ -137,7 +137,7 @@ class GameScene : BasicScene {
     createItem()
     changeDifficulty()
 
-    if (count > MAX_COUNT) {
+    if (count > maxCount) {
       count = 0
     }
 

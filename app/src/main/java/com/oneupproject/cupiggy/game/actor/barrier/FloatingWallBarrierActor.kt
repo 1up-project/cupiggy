@@ -2,7 +2,6 @@ package com.oneupproject.cupiggy.game.actor.barrier
 
 import com.oneupproject.cupiggy.game.FpsManager
 import com.oneupproject.cupiggy.util.Utility
-import com.oneupproject.cupiggy.util.shape.BarrierDrawingShape
 
 /**
  * FloatingWallBarrier
@@ -15,15 +14,13 @@ import com.oneupproject.cupiggy.util.shape.BarrierDrawingShape
 
 class FloatingWallBarrierActor : WallBarrierActor {
 
-  private val CYCLE = Utility.getRandomFloatValue(240) + 120f
-  private val STROKE = Utility.getRandomFloatValue(140) + 100f
+  private val cycle = Utility.getRandomFloatValue(240) + 120f
+  private val stroke = Utility.getRandomFloatValue(140) + 100f
 
   private var minWidth = 80f
   private var maxWidth = 100f
   private var minHeight = 150f
   private var maxHeight = 250f
-
-  private var shape = BarrierDrawingShape()
 
   init {
     minSpeed = 4f
@@ -38,20 +35,20 @@ class FloatingWallBarrierActor : WallBarrierActor {
   constructor() : super()
 
   override fun createWall() {
-    val WIDTH = Utility.getRandomFloatValue(maxWidth.toInt() - minWidth.toInt())
-    val HEIGHT = Utility.getRandomFloatValue(maxHeight.toInt() - minHeight.toInt())
+    val width = Utility.getRandomFloatValue(maxWidth.toInt() - minWidth.toInt())
+    val height = Utility.getRandomFloatValue(maxHeight.toInt() - minHeight.toInt())
 
-    width = minWidth + WIDTH
-    height = minHeight + HEIGHT
+    this.width = minWidth + width
+    this.height = minHeight + height
 
-    x = START_POINT_X
+    x = startPointX
 
-    createCollisionRange(width, height)
+    createCollisionRange(this.width, this.height)
   }
 
   override fun move() {
     x += vector.x
-    y = Utility.getUpAndDownPoint(FpsManager.count, CYCLE, STROKE) + 100f
+    y = Utility.getUpAndDownPoint(FpsManager.count, cycle, stroke) + 100f
   }
 
 }
