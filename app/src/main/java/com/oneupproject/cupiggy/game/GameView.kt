@@ -12,6 +12,7 @@ import com.oneupproject.cupiggy.game.manager.GameManager
  *
  * ゲーム用Viewクラスです。
  * SurfaceViewを継承します。
+ * change!!
  *
  * @property thread スレッドクラス
  * @author y728n
