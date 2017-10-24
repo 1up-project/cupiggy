@@ -48,6 +48,8 @@ object ImageHelper : BasicHelper {
     return getResource(R.mipmap.img_player)
   }
 
+  fun getSmallPlayerImage() = getResource(R.mipmap.img_small_player)
+
   fun getItemStrawberry(): Bitmap {
     return getResource(R.mipmap.img_strawberry)
   }
@@ -95,6 +97,8 @@ object ImageHelper : BasicHelper {
   fun getFivePointStar(): Bitmap {
     return getResource(R.mipmap.img_fpstar)
   }
+
+  fun getItemCupcake() = getResource(R.mipmap.img_cupcake)
 
   private fun getResource(name: Int): Bitmap {
     return BitmapFactory.decodeResource(resource, name)

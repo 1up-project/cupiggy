@@ -16,4 +16,6 @@ class PlayerActor : BasicPlayerActor {
 
   constructor(x: Float, y: Float) : super(x, y, ImageHelper.getPlayerImage())
 
+  constructor(player: BasicPlayerActor) : super(player.x, player.y, ImageHelper.getPlayerImage())
+
 }

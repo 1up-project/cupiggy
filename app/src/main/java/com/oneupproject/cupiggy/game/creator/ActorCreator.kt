@@ -26,12 +26,17 @@ class ActorCreator : BasicCreator() {
   private fun createIcePop(x: Float, y: Float) = IcePopItemActor(x, y)
   private fun createStar(x: Float, y: Float) = StarItemActor(x, y)
 
+  private fun createCupcake(x: Float, y: Float) = CupcakeItemActor(x, y)
+
   fun createRandomItem(): BasicItemActor {
     val x = Utility.getGameWidth()
     val y = Utility.getRandomFloatValue(Utility.getGameHeight().toInt())
     val itemNum = Utility.getRandomIntValue(100)
 
     return when {
+      itemNum < 15 -> {
+        createCupcake(x, y)
+      }
       itemNum < 30 -> {
         createStrawberry(x, y)
       }
