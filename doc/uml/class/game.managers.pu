@@ -1,0 +1,55 @@
+@startuml
+
+package "game" {
+  interface GameObject
+  note top of GameObject
+  ゲーム中に表示される
+  オブジェクトの基底クラスです。
+  onDrawとonUpdateを持っています。
+  end note
+
+  package "manager" {
+    abstract BasicManager
+    note top of BasicManager
+      各Managerクラスの基底クラスです。
+    end note
+
+    class FpsManager << Singleton >>
+    note bottom of FpsManager
+      フレームレートを60FPSに
+      保つための制御を行います。
+    end note
+
+    class GameManager << Singleton >>
+    note bottom of GameManager
+      各Managerクラスの更新と描画を行う
+      ゲームループの基幹的な処理です。
+    end note
+
+    class OperationManager << Singleton >>
+    note bottom of OperationManager
+      GyroSensorHelper、TouchHelperの値を
+      ゲーム用のデータに変換し、ゲームに反映させます。
+    end note
+
+    class SceneManager << Singleton >>
+    note bottom of SceneManager
+      各Sceneをまとめる処理です。
+      条件に応じ、Sceneへ遷移します。
+    end note
+
+    class ScoreManager << Singleton >>
+    note bottom of ScoreManager
+      スコアを管理します。
+    end note
+
+    GameObject <|-- BasicManager
+    BasicManager <|-- FpsManager
+    BasicManager <|-- GameManager
+    BasicManager <|-- OperationManager
+    BasicManager <|-- SceneManager
+    BasicManager <|-- ScoreManager
+  }
+}
+
+@enduml
