@@ -2,9 +2,11 @@ package com.oneupproject.cupiggy.game.actor.player
 
 import android.graphics.Bitmap
 import com.oneupproject.cupiggy.game.actor.BasicActor
+import com.oneupproject.cupiggy.game.actor.item.BasicItemActor
 import com.oneupproject.cupiggy.game.manager.OperationManager
 import com.oneupproject.cupiggy.util.Utility
 import com.oneupproject.cupiggy.util.Vector
+import com.oneupproject.cupiggy.util.helper.ImageHelper
 
 /**
  * BasicPlayer
@@ -14,7 +16,7 @@ import com.oneupproject.cupiggy.util.Vector
  * @property life 残機
  * @property isInvincible 無敵モード
  * @property operationVector 方向
- * @ddauthor y728n
+ * @author y728n
  * @since 1.0.0
  */
 
@@ -25,10 +27,10 @@ abstract class BasicPlayerActor : BasicActor {
 
   private var isInvincible = false
 
-  private var operationVector: Vector = Vector()
+  protected var operationVector: Vector = Vector()
 
   init {
-    maxSpeed = 20.0f
+    maxSpeed = 20f
   }
 
   constructor(x: Float, y: Float, image: Bitmap) : super(x, y, image) {
@@ -64,6 +66,27 @@ abstract class BasicPlayerActor : BasicActor {
     if (right < x) x = right
     if (y < 0) y = 0.0f
     if (bottom < y) y = bottom
+  }
+
+  fun eat(item: BasicItemActor) {
+    when(item.effect) {
+      BasicItemActor.Effect.SMALL -> {
+        changeSmall()
+      }
+      else -> {
+        changeNormal()
+      }
+    }
+  }
+
+  private fun changeSmall() {
+    setGraphic(ImageHelper.getSmallPlayerImage())
+    maxSpeed = 10f
+  }
+
+  private fun changeNormal() {
+    setGraphic(ImageHelper.getPlayerImage())
+    maxSpeed = 20f
   }
 
 }

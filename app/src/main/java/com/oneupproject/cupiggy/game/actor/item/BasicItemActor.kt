@@ -19,6 +19,21 @@ abstract class BasicItemActor : BasicActor {
   var score: Int = 0
     protected set
 
+  /**
+   * 効果一覧
+   */
+  enum class Effect {
+    NONE,
+    BIG,
+    SMALL,
+  }
+
+  /**
+   * 取得効果
+   */
+  var effect: Effect = Effect.NONE
+    protected set
+
   init {
     minSpeed = 5f
     maxSpeed = 15f

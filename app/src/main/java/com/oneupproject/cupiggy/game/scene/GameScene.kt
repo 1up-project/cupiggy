@@ -135,6 +135,7 @@ class GameScene : BasicScene {
 
     createBarrier()
     createItem()
+
     changeDifficulty()
 
     if (count > maxCount) {
@@ -148,6 +149,7 @@ class GameScene : BasicScene {
           itemActors.forEach { actor ->
             if (it.hit(actor)) {
               actor.taken()
+              it.eat(actor)
             }
           }
           barrierActors.forEach { actor ->
@@ -162,6 +164,7 @@ class GameScene : BasicScene {
           playerActors.forEach { actor ->
             if (it.hit(actor)) {
               it.taken()
+              actor.eat(it)
             }
           }
         }

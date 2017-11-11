@@ -82,6 +82,11 @@ abstract class BasicActor : GameObject {
   }
 
   /**
+   * Actorクラスを変化させる場合に使用
+   */
+  constructor(actor: BasicActor, image: Bitmap) : this(actor.x, actor.y, image)
+
+  /**
    * スピードを設定します。
    *
    * @return 取得したスピードを返す。（右か登場するため、常にマイナス値）
