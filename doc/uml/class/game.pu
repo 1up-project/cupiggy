@@ -1,0 +1,94 @@
+@startuml
+
+package "game" {
+  interface GameObject
+  note top of GameObject
+  ゲーム中に表示される
+  オブジェクトの基底クラスです。
+  onDrawとonUpdateを持っています。
+  end note
+
+  package "scene" {
+    abstract BasicScene
+    GameObject <|-- BasicScene
+    BasicScene <|-- TitleScene
+    BasicScene <|-- GameScne
+  }
+  note top of scene
+    各Actorを管理するためのクラスです。
+    このクラスの中でActorの生成と処理を行います。
+  end note
+
+  package "actor" {
+    abstract BasicActor
+    GameObject <|-- BasicActor
+
+    package "player" {
+      abstract BasicPlayerActor
+      BasicActor <|-- BasicPlayerActor
+      BasicPlayerActor <|-- PlayerActor
+    }
+    note top of player
+      プレイヤーが操作するActorクラスです。
+      GyroSensorにより移動します。
+    end note
+
+    package "item" {
+      abstract BasicItemActor
+      BasicActor <|-- BasicItemActor
+      BasicItemActor <|-- CheeseItemActor
+      BasicItemActor <|-- ChocolateItemActor
+      BasicItemActor <|-- CupcakeItemActor
+      BasicItemActor <|-- DangoItemActor
+      BasicItemActor <|-- IcePopItemActor
+      BasicItemActor <|-- PuddingItemActor
+      BasicItemActor <|-- StarItemActor
+      BasicItemActor <|-- StrawberryItemActor
+    }
+    note top of item
+      点数、または特殊効果のあるActorクラスです。
+    end note
+
+    package "barrier" {
+      abstract BasicBarrierActor
+      BasicActor <|-- BasicBarrierActor
+      BasicBarrierActor <|-- FloatingWallBarrierActor
+      BasicBarrierActor <|-- FloolBarrierActor
+      BasicBarrierActor <|-- MovingBarrierActor
+      BasicBarrierActor <|-- WallBarrierActor
+      WallBarrierActor <|-- RoofBarrierActor
+    }
+    note top of barrier
+      障害物用のActorクラスです。
+    end note
+
+    package "background" {
+      abstract BasicBackgroundActor
+      BasicActor <|-- BasicBackgroundActor
+      BasicBackgroundActor <|-- CloudyBackgroundActor
+      BasicBackgroundActor <|-- MidnightBackgroundActor
+      BasicBackgroundActor <|-- SunnyBackgroundActor
+      BasicBackgroundActor <|-- SunriseBackgroundActor
+      BasicBackgroundActor <|-- UniverseBackgroundActor
+    }
+    note top of background
+      背景描画用のActorクラスです。
+      例外的に、Backgroundクラス内に
+      inner classとしてActorを生成しています。
+    end note
+
+ }
+
+  note top of actor
+    一部を除き、ゲーム中に表示するオブジェクトは
+    すべてActorとして管理します。
+  end note
+
+  package "creator" {
+    abstract BasicCreator
+    BasicCreator <|-- ActorCreator
+    BasicCreator <|-- SceneCreator
+  }
+
+}
+@enduml

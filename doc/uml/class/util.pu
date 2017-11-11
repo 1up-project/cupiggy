@@ -1,0 +1,54 @@
+@startuml
+
+package "util" {
+
+  package "helper" {
+    interface BasicHelper
+    class GyroSensorHelper << Singleton >>
+    class ImageHelper << Singleton >>
+    class MusicHelper << Singleton >>
+    class PreferenceHelper << Singleton >>
+    class SoundHelper << Singleton >>
+    class TouchHelper << Singleton >>
+    BasicHelper <|-- GyroSensorHelper
+    BasicHelper <|-- ImageHelper
+    BasicHelper <|-- MusicHelper
+    BasicHelper <|-- PreferenceHelper
+    BasicHelper <|-- SoundHelper
+    BasicHelper <|-- TouchHelper
+  }
+  note top of helper
+    デバイスに影響する処理群です。
+    Activityの状態により、制御できます。
+  end note
+
+  package "shape" {
+    abstract BasicDrawingShape
+    BasicDrawingShape <|-- BarrierDrawingShape
+    BasicDrawingShape <|-- CircleDrawingShape
+    BasicDrawingShape <|-- RectDrawingShape
+  }
+  note top of shape
+    画像ファイルでなく、
+    Canvasに描画する基底の形を生成します。
+  end note
+  
+  class Font
+  note bottom of Font
+    アルファベットを並べたのBitmapから
+    文字を切り出すクラスです。
+  end note
+
+  class Utility << Singleton >>
+  note bottom of Utility
+    名前の通りのUtilityクラスです。
+  end note
+
+  class Vector
+  note bottom of Vector
+    指定した方向で移動するための汎用クラスです。
+  end note
+
+}
+
+@enduml
