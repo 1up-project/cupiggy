@@ -27,6 +27,16 @@ abstract class BasicPlayerActor : BasicActor {
 
   private var isInvincible = false
 
+  /**
+   * 状態
+   */
+  private enum class Status {
+    NORMAL,
+    SMALL,
+    BIG,
+  }
+  private var isStatus = Status.NORMAL
+
   protected var operationVector: Vector = Vector()
 
   init {
@@ -68,24 +78,41 @@ abstract class BasicPlayerActor : BasicActor {
     if (bottom < y) y = bottom
   }
 
-  fun eat(item: BasicItemActor) {
-    when(item.effect) {
-      BasicItemActor.Effect.SMALL -> {
-        changeSmall()
+  fun eat(item: BasicItemActor) = when (item.effect) {
+    BasicItemActor.Effect.SMALL -> {
+      when (isStatus) {
+        Status.BIG -> changeNormal()
+        else -> changeSmall()
       }
-      else -> {
-        changeNormal()
+    }
+    BasicItemActor.Effect.BIG -> {
+      when (isStatus) {
+        Status.SMALL -> changeNormal()
+        else -> changeBig()
+      }
+    }
+    else -> {
+      when (isStatus) {
+        Status.BIG -> changeBig()
+        else -> changeNormal()
       }
     }
   }
 
   private fun changeSmall() {
     setGraphic(ImageHelper.getSmallPlayerImage())
-    maxSpeed = 10f
+    isStatus = Status.SMALL
+    maxSpeed = 30f
   }
 
+  private fun changeBig() {
+    setGraphic(ImageHelper.getBigPlayerImage())
+    isStatus = Status.BIG
+    maxSpeed = 3f
+  }
   private fun changeNormal() {
     setGraphic(ImageHelper.getPlayerImage())
+    isStatus = Status.NORMAL
     maxSpeed = 20f
   }
 
