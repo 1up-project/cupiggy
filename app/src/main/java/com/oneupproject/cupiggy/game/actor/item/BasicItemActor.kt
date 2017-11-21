@@ -44,6 +44,7 @@ abstract class BasicItemActor : BasicActor {
     destroy()
 
     ScoreManager.addScore(score)
+
   }
 
 }

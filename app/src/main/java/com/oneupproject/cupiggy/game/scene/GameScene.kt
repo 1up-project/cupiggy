@@ -6,6 +6,7 @@ import com.oneupproject.cupiggy.game.actor.background.*
 import com.oneupproject.cupiggy.game.actor.barrier.BasicBarrierActor
 import com.oneupproject.cupiggy.game.actor.player.BasicPlayerActor
 import com.oneupproject.cupiggy.game.actor.item.BasicItemActor
+import com.oneupproject.cupiggy.game.actor.score.BasicScoreActor
 import com.oneupproject.cupiggy.game.manager.GameManager
 import com.oneupproject.cupiggy.game.manager.OperationManager
 import com.oneupproject.cupiggy.game.manager.ScoreManager
@@ -33,6 +34,7 @@ class GameScene : BasicScene {
   private var playerActors: LinkedList<BasicPlayerActor> = LinkedList()
   private var itemActors: LinkedList<BasicItemActor> = LinkedList()
   private var barrierActors: LinkedList<BasicBarrierActor> = LinkedList()
+  private var scoreActors: LinkedList<BasicScoreActor> = LinkedList()
 
   private var count = 0
   private var maxCount = 10000
@@ -143,6 +145,7 @@ class GameScene : BasicScene {
 
     backgroundActors.filter { it.onUpdate() }
 
+
     playerActors.filter { it.onUpdate() }
         .forEach {
           itemActors.forEach { actor ->
@@ -162,6 +165,7 @@ class GameScene : BasicScene {
           playerActors.forEach { actor ->
             if (it.hit(actor)) {
               it.taken()
+              scoreActors.add(actorCreator.createScore(actor.x, actor.y , it.score))
             }
           }
         }
@@ -175,10 +179,13 @@ class GameScene : BasicScene {
           }
         }
 
+    scoreActors.filter { it.onUpdate() }
+
     backgroundActors.removeAll { !it.isAlive }
     playerActors.removeAll { !it.isAlive }
     itemActors.removeAll { !it.isAlive }
     barrierActors.removeAll { !it.isAlive }
+    scoreActors.removeAll { !it.isAlive }
 
     if (playerActors.isEmpty() && !isGameOver) {
       gameOver()
@@ -196,6 +203,7 @@ class GameScene : BasicScene {
     playerActors.filter { it.isVisible }.forEach { it.onDraw(canvas) }
     itemActors.filter { it.isVisible }.forEach { it.onDraw(canvas) }
     barrierActors.filter { it.isVisible }.forEach { it.onDraw(canvas) }
+    scoreActors.filter { it.isVisible }.forEach { it.onDraw(canvas)}
 
     if (isGameOver) {
       font.drawCenteringText("GAME OVER", 500f, canvas)

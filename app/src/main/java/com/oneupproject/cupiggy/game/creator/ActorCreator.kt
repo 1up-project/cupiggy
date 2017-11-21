@@ -3,6 +3,7 @@ package com.oneupproject.cupiggy.game
 import com.oneupproject.cupiggy.game.actor.barrier.*
 import com.oneupproject.cupiggy.game.actor.player.PlayerActor
 import com.oneupproject.cupiggy.game.actor.item.*
+import com.oneupproject.cupiggy.game.actor.score.ScoreActor
 import com.oneupproject.cupiggy.util.Utility
 
 /**
@@ -61,5 +62,7 @@ class ActorCreator : BasicCreator() {
   fun createMovingBarrier() = MovingBarrierActor()
   fun createFloor() = FloorBarrierActor()
   fun createRoof() = RoofBarrierActor()
+
+  fun createScore(x: Float, y: Float, score:Int) = ScoreActor(x, y, score)
 
 }
